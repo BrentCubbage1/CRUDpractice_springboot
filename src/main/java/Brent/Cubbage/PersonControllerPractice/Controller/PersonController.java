@@ -29,35 +29,35 @@ public class PersonController {
     public ResponseEntity<Person> createPerson(@RequestBody Person person){
         Person createdPerson = service.create(person);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);
+        return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/find/{id}")
     public ResponseEntity<Person> findById(@PathVariable Long id){
         Person foundPerson = service.readById(id);
 
-        return ResponseEntity.status(HttpStatus.OK).body(foundPerson);
+        return new ResponseEntity<>(foundPerson, HttpStatus.OK);
     }
 
     @GetMapping(value = "/findAll")
     public ResponseEntity<List<Person>> findAll(){
         List<Person> foundPersons = service.findAllPersons();
 
-        return ResponseEntity.status(HttpStatus.OK).body(foundPersons);
+        return new ResponseEntity<>(foundPersons, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person){
         Person updatedPerson = service.update(person, id);
 
-        return ResponseEntity.status(HttpStatus.OK).body(updatedPerson);
+        return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Person> delete(@PathVariable Long id){
         Person deletedPerson = service.delete(id);
 
-        return ResponseEntity.status(HttpStatus.OK).body(deletedPerson);
+        return new ResponseEntity<>(deletedPerson, HttpStatus.OK);
     }
 
 }
